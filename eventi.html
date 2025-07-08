@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventi - Apo San Carlo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2a40; /* Blu scuro per header/footer */
+            --secondary-color: #3b608c; /* Blu medio per elementi chiave */
+            --light-blue: #6a9acb; /* Blu chiaro per dettagli */
+            --text-color-dark: #333333; /* Testo scuro per sfondo bianco */
+            --text-color-light: #f0f8ff; /* Testo chiaro su sfondi scuri */
+            --accent-color: #4a7abf; /* Blu accento per hover/active */
+            --card-bg-light: rgba(255, 255, 255, 0.9); /* Sfondo carte quasi bianco, leggermente trasparente */
+            --card-bg-hover: rgba(255, 255, 255, 1); /* Sfondo carte bianco pieno al hover */
+        }
+
+        body {
+            background-color: #ffffff; /* Sfondo bianco puro */
+            color: var(--text-color-dark); /* Testo scuro di default */
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 15px 0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 28px;
+            letter-spacing: 1.5px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin: 0 18px;
+        }
+
+        nav a {
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        main.container {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        /* Hero Section Specifics for "Eventi" */
+        .hero {
+            background: linear-gradient(rgba(26, 42, 64, 0.8), rgba(59, 96, 140, 0.8)), url('https://via.placeholder.com/1200x400/3b608c/f0f8ff?text=Eventi+Apo+San+Carlo') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* General Section Styling */
+        section {
+            background: var(--card-bg-light); /* Sfondo chiaro per le sezioni */
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        section h3 {
+            color: var(--primary-color); /* Titolo della sezione in blu scuro */
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        section p {
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* Event Grid/List Styling */
+        .event-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background-color: #ffffff; /* Sfondo bianco per le card evento */
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Bordo sottile */
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-card h4 {
+            color: var(--secondary-color); /* Titolo evento in blu medio */
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .event-card .date-location {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-card .date-location span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .event-card p {
+            font-size: 16px;
+            color: var(--text-color-dark);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .event-card .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-top: auto; /* Spinge il pulsante in basso */
+        }
+
+        .event-card .button:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Section for upcoming/past events */
+        .event-category {
+            margin-top: 40px;
+        }
+
+        .event-category h3 {
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+        }
+
+        /* Animazioni */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Media Queries per la responsività */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav li {
+                margin: 5px 10px;
+            }
+            .hero {
+                padding: 60px 20px;
+                min-height: 250px;
+            }
+            .hero h2 {
+                font-size: 38px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            section h3 {
+                font-size: 28px;
+            }
+            section p, .event-card p, .event-card .date-location {
+                font-size: 16px;
+            }
+            .event-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+            nav a {
+                padding: 6px 10px;
+            }
+            .hero {
+                padding: 40px 15px;
+                min-height: 200px;
+            }
+            .hero h2 {
+                font-size: 30px;
+            }
+            .hero p {
+                font-size: 15px;
+            }
+            section {
+                padding: 20px;
+            }
+            section h3 {
+                font-size: 24px;
+            }
+            .event-card h4 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Apo San Carlo</h1>
+            <nav>
+                <ul>
+                    <li><a href="prova.html">Home</a></li>
+                    <li><a href="chisiamo.html">Chi siamo</a></li>
+                    <li><a href="discipline.html">Discipline</a></li>
+                    <li><a href="eventi.html" class="active">Eventi</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>I Nostri Eventi</h2>
+            <p>Durante l'anno, organizziamo eventi educativi, sportivi e di comunità per rafforzare il legame tra ragazzi, famiglie e il territorio di Peschiera Borromeo. Un'occasione per divertirsi, imparare e stare insieme!</p>
+        </section>
+
+        <section class="event-category">
+            <h3>Prossimi Eventi</h3>
+            <div class="event-list">
+                <article class="event-card">
+                    <h4>Festa dello Sport 2025</h4>
+                    <div class="date-location">
+                        <span>🗓️ 15 Settembre 2025</span> | <span>📍 Campo Sportivo Comunale</span>
+                    </div>
+                    <p>Una giornata dedicata al divertimento e allo sport per tutte le età! Ci saranno tornei di calcio, pallavolo e basket, giochi a squadre, premiazioni e un ricco buffet per tutti i partecipanti.</p>
+                    <a href="#" class="button">Maggiori Dettagli</a>
+                </article>
+
+                <article class="event-card">
+                    <h4>Campo Estivo "Estate Sportiva"</h4>
+                    <div class="date-location">
+                        <span>🗓️ Luglio - Agosto 2025</span> | <span>📍 Centro Sportivo Apo</span>
+                    </div>
+                    <p>Settimane di divertimento, attività sportive, laboratori creativi ed escursioni all'aria aperta. Un'opportunità unica per i ragazzi di crescere e socializzare in un ambiente sano e stimolante.</p>
+                    <a href="#" class="button">Iscriviti Ora</a>
+                </article>
+
+                <article class="event-card">
+                    <h4>Giornata della Famiglia</h4>
+                    <div class="date-location">
+                        <span>🗓️ 12 Ottobre 2025</span> | <span>📍 Parco della Comunità</span>
+                    </div>
+                    <p>Un evento per celebrare la famiglia e la comunità con attività all'aperto, pic-nic condiviso e giochi per grandi e piccini. Un momento per rafforzare i legami e vivere la gioia dello stare insieme.</p>
+                    <a href="#" class="button">Scopri di Più</a>
+                </article>
+
+                <article class="event-card">
+                    <h4>Partita Solidale di Beneficenza</h4>
+                    <div class="date-location">
+                        <span>🗓️ 23 Novembre 2025</span> | <span>📍 Palazzetto dello Sport</span>
+                    </div>
+                    <p>Una partita amichevole di basket o pallavolo il cui ricavato sarà devoluto a un'associazione benefica locale. Sport e solidarietà uniti per una buona causa.</p>
+                    <a href="#" class="button">Partecipa</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="event-category">
+            <h3>Eventi Passati</h3>
+            <p>Rivedi alcuni dei momenti salienti degli eventi che abbiamo organizzato in passato:</p>
+            <div class="event-list">
+                <article class="event-card">
+                    <h4>Torneo di Natale 2024</h4>
+                    <div class="date-location">
+                        <span>🗓️ Dicembre 2024</span> | <span>📍 Palestra Comunale</span>
+                    </div>
+                    <p>Torneo di calcio e pallavolo per chiudere l'anno in bellezza con spirito natalizio e divertimento. Molti partecipanti e grande successo!</p>
+                    <a href="#" class="button">Galleria Foto</a>
+                </article>
+
+                <article class="event-card">
+                    <h4>Corsa Podistica "Corri per la Salute"</h4>
+                    <div class="date-location">
+                        <span>🗓️ Maggio 2024</span> | <span>📍 Strade di Bettola-Zeloforomagno</span>
+                    </div>
+                    <p>Una corsa non competitiva per promuovere uno stile di vita attivo e la salute. Ha visto la partecipazione di centinaia di persone di ogni età.</p>
+                    <a href="#" class="button">Guarda il Video</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Apo San Carlo. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+</body>
+</html>

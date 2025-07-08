@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iscrizioni - Apo San Carlo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #1a2a40;
+      --secondary-color: #3b608c;
+      --accent-color: #4a7abf;
+      --text-color-light: #f0f8ff;
+      --text-color-dark: #333;
+      --bg-light: #f8fbff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background-color: white;
+      color: var(--text-color-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary-color);
+      color: var(--text-color-light);
+      padding: 15px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    nav li {
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: var(--text-color-light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .hero {
+      background: var(--secondary-color);
+      color: var(--text-color-light);
+      padding: 50px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    form {
+      background: var(--bg-light);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+    }
+
+    form button {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    footer {
+      background: var(--primary-color);
+      color: var(--text-color-light);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Apo San Carlo</h1>
+      <nav>
+        <ul>
+          <li><a href="prova.html">Home</a></li>
+          <li><a href="chisiamo.html">Chi siamo</a></li>
+          <li><a href="discipline.html">Discipline</a></li>
+          <li><a href="eventi.html">Eventi</a></li>
+          <li><a href="collabora.html">Collabora</a></li>
+          <li><a href="iscrizioni.html" class="active">Iscrizioni</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Modulo di Iscrizione</h2>
+      <p>Compila il modulo per iscriverti alle attività educative e sportive di Apo San Carlo. Ti ricontatteremo al più presto.</p>
+    </section>
+
+    <form action="processa_iscrizione.php" method="POST">
+      <label for="nome">Nome e Cognome *</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="attivita">Attività di interesse *</label>
+      <select id="attivita" name="attivita" required>
+        <option value="">-- Seleziona un'attività --</option>
+        <option value="calcio">Calcio</option>
+        <option value="pallavolo">Pallavolo</option>
+        <option value="basket">Basket</option>
+        <option value="altro">Altro</option>
+      </select>
+
+      <label for="messaggio">Messaggio o note aggiuntive</label>
+      <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi qui eventuali richieste particolari..."></textarea>
+
+      <button type="submit">Invia Iscrizione</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Apo San Carlo. Tutti i diritti riservati.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discipline - Apo San Carlo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #1a2a40;
+      --secondary-color: #3b608c;
+      --light-blue: #6a9acb;
+      --text-color-dark: #333333;
+      --text-color-light: #f0f8ff;
+      --accent-color: #4a7abf;
+      --card-bg-light: rgba(255, 255, 255, 0.9);
+      --card-bg-hover: rgba(255, 255, 255, 1);
+    }
+
+    body {
+      background-color: #ffffff;
+      color: var(--text-color-dark);
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: var(--primary-color);
+      color: var(--text-color-light);
+      padding: 15px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 1.5px;
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav li {
+      margin: 0 18px;
+    }
+
+    nav a {
+      color: var(--text-color-light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    main.container {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+      padding: 40px 20px;
+      background-color: var(--secondary-color);
+      color: var(--text-color-light);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1s ease-out;
+    }
+
+    .hero h2 {
+      font-size: 44px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 20px;
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .discipline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .discipline-card {
+      position: relative;
+      background: var(--card-bg-light);
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+      color: var(--text-color-dark);
+      overflow: hidden;
+    }
+
+    .discipline-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 16px 24px rgba(0, 0, 0, 0.2);
+      background: var(--card-bg-hover);
+    }
+
+    .discipline-card h3 {
+      margin-top: 0;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .discipline-card h3 span {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    .discipline-card p {
+      font-size: 17px;
+      z-index: 1;
+    }
+
+    /* Aggiunta sfondo emoji */
+    .discipline-card::before {
+      content: attr(data-icon);
+      font-size: 300px;
+      color: rgba(200, 200, 200, 0.1);
+      position: absolute;
+      right: 20px;
+      bottom: 10px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    footer {
+      background: var(--primary-color);
+      color: var(--text-color-light);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 50px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 24px; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+      nav li { margin: 5px 10px; }
+      .hero h2 { font-size: 36px; }
+      .hero p { font-size: 18px; }
+      .discipline-grid { grid-template-columns: 1fr; }
+      .discipline-card { padding: 25px; }
+      .discipline-card h3 { font-size: 24px; }
+      .discipline-card p { font-size: 15px; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 20px; }
+      nav a { padding: 6px 10px; }
+      .hero h2 { font-size: 30px; }
+      .hero p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Apo San Carlo</h1>
+      <nav>
+        <ul>
+          <li><a href="prova.html">Home</a></li>
+          <li><a href="chisiamo.html">Chi siamo</a></li>
+          <li><a href="discipline.html" class="active">Discipline</a></li>
+          <li><a href="eventi.html">Eventi</a></li>
+          <li><a href="contatti.html">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Le Nostre Discipline</h2>
+      <p>Offriamo attività sportive ed educative pensate per bambini, ragazzi e adulti. Ogni disciplina è guidata da educatori esperti che seguono i valori di comunità, crescita personale e fair play di Apo San Carlo.</p>
+    </section>
+
+    <section class="discipline-grid">
+      <article class="discipline-card" data-icon="⚽">
+        <h3><span role="img" aria-label="pallone da calcio"></span> Calcio</h3>
+        <p>Impara la tecnica, sviluppa lo spirito di squadra e pratica il fair play in campo. Il calcio è passione e crescita, unisce tutti.</p>
+      </article>
+
+      <article class="discipline-card" data-icon="🏐">
+        <h3><span role="img" aria-label="pallone da pallavolo"></span> Pallavolo</h3>
+        <p>Migliora la coordinazione, il rispetto e la collaborazione in un gioco che unisce. Ogni schiacciata è un'occasione per fare squadra.</p>
+      </article>
+
+      <article class="discipline-card" data-icon="🏀">
+        <h3><span role="img" aria-label="pallone da basket"></span> Basket</h3>
+        <p>Esprimi energia, strategia e inclusione sul parquet. Il basket ti aiuterà a sviluppare sia la mente che il corpo in modo dinamico.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Apo San Carlo. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+</body>
+</html>
